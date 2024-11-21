@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Привет, {{ user.username }}!</h1>
-  <h2>Добро пожаловать на сайт студии практического творчества "Синица"</h2>
-  {% for post in posts %}
-  <div><p>{{ post.author.username }}: <b>{{ post.body }}</b></p></div>
-  {% endfor %}
+<h1>Привет, {{ current_user.username }}!</h1>
+<h2>Добро пожаловать на сайт студии практического творчества "Синица"</h2>
+{% for post in posts %}
+<div>
+  <p>{{ post.author.username }}: <b>{{ post.body }}</b></p>
+</div>
+{% endfor %}
 {% endblock %}

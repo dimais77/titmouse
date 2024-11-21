@@ -1,28 +1,35 @@
 <!doctype html>
 <html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - Синица</title>
+
+<head>
+    {% if title %}
+    <title>{{ title }} - Синица</title>
+    {% else %}
+    <title>Добро пожаловать!</title>
+    {% endif %}
+</head>
+
+<body>
+    <div>
+        Синица:
+        <a href="{{ url_for('index') }}">Главная</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Авторизация</a>
         {% else %}
-        <title>Добро пожаловать!</title>
+        <a href="{{ url_for('logout') }}">Выйти</a>
         {% endif %}
-    </head>
-    <body>
-        <div>
-            Синица: 
-            <a href="{{ url_for('index') }}">Главная</a>
-            <a href="{{ url_for('login') }}">Авторизация</a>
-        </div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
+    </div>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</body>
+
 </html>
